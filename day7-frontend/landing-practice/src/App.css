@@ -1,0 +1,261 @@
+.landing-shell {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #060816 0%, #11182f 100%);
+  color: #f5f7ff;
+  padding: 24px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+  background: rgba(10, 14, 28, 0.85);
+  backdrop-filter: blur(14px);
+  gap: 16px;
+}
+
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #38bdf8);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-badge {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #1f2937;
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.ghost-btn,
+.primary-btn,
+.secondary-btn {
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.ghost-btn {
+  padding: 8px 14px;
+  color: #f8fafc;
+  background: #111827;
+}
+
+.announcement-banner {
+  margin: 20px 0 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+}
+
+.announcement-banner button {
+  background: transparent;
+  color: #f8fafc;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+  align-items: start;
+  padding: 24px 8px 0;
+}
+
+.hero-copy h1 {
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+  margin: 6px 0 16px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.75rem;
+  color: #7dd3fc;
+  margin-bottom: 8px;
+}
+
+.hero-text {
+  color: #cbd5e1;
+  font-size: 1rem;
+  max-width: 620px;
+  line-height: 1.7;
+}
+
+.cta-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.primary-btn {
+  padding: 12px 18px;
+  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  color: white;
+}
+
+.secondary-btn {
+  padding: 12px 18px;
+  background: #111827;
+  color: #f8fafc;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.lead-form {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(10, 14, 28, 0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: grid;
+  gap: 12px;
+}
+
+.lead-form h2 {
+  margin: 0;
+}
+
+.form-caption {
+  margin: 0 0 4px;
+  color: #cbd5e1;
+}
+
+.lead-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.lead-form input,
+.lead-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.lead-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.opportunity-panel {
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(9, 13, 25, 0.95);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 20px 45px rgba(2, 6, 23, 0.35);
+}
+
+.panel-header h2 {
+  margin: 0 0 16px;
+}
+
+.card-list {
+  display: grid;
+  gap: 12px;
+}
+
+.opportunity-card {
+  padding: 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.95));
+  border: 1px solid rgba(148,163,184,0.14);
+}
+
+.opportunity-card h3 {
+  margin: 8px 0 6px;
+}
+
+.opportunity-card p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: rgba(125, 211, 252, 0.16);
+  color: #bae6fd;
+}
+
+@media (max-width: 900px) {
+  .landing-shell {
+    padding: 16px;
+  }
+
+  .hero-section {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar,
+  .announcement-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+}
