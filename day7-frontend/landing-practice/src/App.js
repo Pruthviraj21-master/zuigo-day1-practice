@@ -1,4 +1,5 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom';
 import './App.css';
 
 const collaborationOptions = [
@@ -19,6 +20,31 @@ const collaborationOptions = [
   },
 ];
 
+function TopBar() {
+  return (
+    <header className="topbar">
+      <div className="brand-block">
+        <div className="brand-mark">C</div>
+        <span className="brand-name">CollabCraft</span>
+      </div>
+
+      <nav className="nav-links" aria-label="Primary navigation">
+        <NavLink className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} to="/">
+          Home
+        </NavLink>
+        <NavLink className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')} to="/opportunities">
+          Opportunities
+        </NavLink>
+      </nav>
+
+      <div className="topbar-actions">
+        <div className="user-badge">AL</div>
+        <button className="ghost-btn" type="button">Log out</button>
+      </div>
+    </header>
+  );
+}
+
 function LandingPage() {
   const [bannerVisible, setBannerVisible] = useState(true);
   const [formData, setFormData] = useState({ name: '', email: '', goal: '' });
@@ -37,23 +63,7 @@ function LandingPage() {
 
   return (
     <div className="landing-shell">
-      <header className="topbar">
-        <div className="brand-block">
-          <div className="brand-mark">C</div>
-          <span className="brand-name">CollabCraft</span>
-        </div>
-
-        <nav className="nav-links" aria-label="Primary navigation">
-          <a href="#discover">Discover</a>
-          <a href="#for-creators">For creators</a>
-          <a href="#insights">Insights</a>
-        </nav>
-
-        <div className="topbar-actions">
-          <div className="user-badge">AL</div>
-          <button className="ghost-btn" type="button">Log out</button>
-        </div>
-      </header>
+      <TopBar />
 
       {bannerVisible && (
         <div className="announcement-banner" role="status">
@@ -73,7 +83,9 @@ function LandingPage() {
           </p>
           <div className="cta-row">
             <button className="primary-btn" type="button">Book a demo</button>
-            <button className="secondary-btn" type="button">View opportunities</button>
+            <Link className="secondary-btn" to="/opportunities">
+              View opportunities
+            </Link>
           </div>
 
           <form className="lead-form" onSubmit={(event) => event.preventDefault()}>
@@ -115,8 +127,94 @@ function LandingPage() {
   );
 }
 
+function OpportunitiesList() {
+  const [opportunities, setOpportunities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    let active = true;
+
+    const loadOpportunities = async () => {
+      setLoading(true);
+      setError('');
+
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL || 'https://jsonplaceholder.typicode.com'}/posts`);
+        if (!response.ok) {
+          throw new Error('Unable to fetch opportunities');
+        }
+
+        const data = await response.json();
+        if (!active) {
+          return;
+        }
+
+        setOpportunities(Array.isArray(data) ? data.slice(0, 6) : []);
+      } catch (err) {
+        if (!active) {
+          return;
+        }
+
+        setError('We could not load opportunities right now. Please try again in a moment.');
+        setOpportunities([]);
+      } finally {
+        if (active) {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadOpportunities();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  return (
+    <div className="landing-shell opportunities-page">
+      <TopBar />
+
+      <main className="opportunities-layout">
+        <section className="opportunities-intro">
+          <p className="eyebrow">Live pipeline</p>
+          <h1>Explore fresh collaboration opportunities from the community feed.</h1>
+          <p className="hero-text">
+            Each card below is pulled from the API so you can see how the list behaves as data arrives and when states change.
+          </p>
+        </section>
+
+        <section className="opportunities-panel" aria-label="Opportunities list">
+          {loading && <div className="state-card">Loading opportunities...</div>}
+          {!loading && error && <div className="state-card error-state">{error}</div>}
+          {!loading && !error && opportunities.length === 0 && <div className="state-card">No opportunities found</div>}
+          {!loading && !error && opportunities.length > 0 && (
+            <div className="card-list opportunities-grid">
+              {opportunities.map((opportunity) => (
+                <article className="opportunity-card" key={opportunity.id}>
+                  <span className="tag">Post #{opportunity.id}</span>
+                  <h3>{opportunity.title}</h3>
+                  <p>{opportunity.body}</p>
+                </article>
+              ))}
+            </div>
+          )}
+        </section>
+      </main>
+    </div>
+  );
+}
+
 function App() {
-  return <LandingPage />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/opportunities" element={<OpportunitiesList />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

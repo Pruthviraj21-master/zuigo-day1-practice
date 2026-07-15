@@ -39,10 +39,15 @@
   flex-wrap: wrap;
 }
 
-.nav-links a {
+.nav-link {
   color: #cbd5e1;
   text-decoration: none;
   font-size: 0.95rem;
+}
+
+.nav-link.active {
+  color: #f8fafc;
+  font-weight: 700;
 }
 
 .topbar-actions {
@@ -69,6 +74,10 @@
   border-radius: 999px;
   cursor: pointer;
   font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .ghost-btn {
@@ -231,6 +240,46 @@
   font-size: 0.75rem;
   background: rgba(125, 211, 252, 0.16);
   color: #bae6fd;
+}
+
+.opportunities-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.opportunities-layout {
+  display: grid;
+  gap: 20px;
+}
+
+.opportunities-intro h1 {
+  margin: 0 0 12px;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.opportunities-panel {
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(9, 13, 25, 0.95);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.state-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e2e8f0;
+}
+
+.state-card.error-state {
+  border-color: rgba(248, 113, 113, 0.4);
+  color: #fecaca;
+}
+
+.opportunities-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 @media (max-width: 900px) {
