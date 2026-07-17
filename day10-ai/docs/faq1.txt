@@ -1,0 +1,10 @@
+CreatorBridge allows businesses to post collaboration opportunities.
+
+Each collaboration includes:
+- Title
+- Budget
+- Platform
+- Location
+- Description
+
+Creators can browse these opportunities and apply.
