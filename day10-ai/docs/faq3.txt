@@ -1,0 +1,3 @@
+Businesses receive creator applications inside their dashboard.
+
+Applications include creator profile information and application status.

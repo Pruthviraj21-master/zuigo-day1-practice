@@ -1,0 +1,8 @@
+Creators can create a profile that includes:
+
+- Name
+- Bio
+- Social platforms
+- Audience size
+- Categories
+- Portfolio
